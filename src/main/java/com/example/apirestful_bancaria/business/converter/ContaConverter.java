@@ -113,4 +113,16 @@ public class ContaConverter {
                 .numero(telefone.getNumero())
                 .build();
     }
+
+    public Conta alterarInfoConta(ContaDTO contaDTO , Conta entity){
+        return Conta.builder()
+                .id(entity.getId())
+                .nome(contaDTO.getNome() != null ? contaDTO.getNome() : entity.getNome())
+                .email(contaDTO.getEmail() != null ? contaDTO.getEmail() : entity.getEmail())
+                .senha(contaDTO.getSenha() != null ? contaDTO.getSenha() : entity.getSenha())
+                .telefones(entity.getTelefones())
+                .dadosPessoais(entity.getDadosPessoais())
+                .enderecos(entity.getEnderecos())
+                .build();
+    }
 }
