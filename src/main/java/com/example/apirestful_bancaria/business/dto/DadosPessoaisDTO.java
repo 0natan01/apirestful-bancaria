@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class DadosPessoaisDTO {
+    private Long id;
     private String rg;
     private String cpf;
 }

@@ -82,6 +82,7 @@ public class ContaConverter {
 
     public DadosPessoaisDTO paraDadosPessoaisDTO(DadosPessoais dadosPessoais){
         return DadosPessoaisDTO.builder()
+                .id(dadosPessoais.getId())
                 .rg(dadosPessoais.getRg())
                 .cpf(dadosPessoais.getCpf())
                 .build();
@@ -95,6 +96,7 @@ public class ContaConverter {
 
     public EnderecoDTO paraEnderecoDTO(Endereco endereco){
         return EnderecoDTO.builder()
+                .id(endereco.getId())
                 .rua(endereco.getRua())
                 .numero(endereco.getNumero())
                 .cep(endereco.getCep())
@@ -109,6 +111,7 @@ public class ContaConverter {
 
     public TelefoneDTO paraTelefoneDTO(Telefone telefone){
         return TelefoneDTO.builder()
+                .id(telefone.getId())
                 .ddd(telefone.getDdd())
                 .numero(telefone.getNumero())
                 .build();
@@ -123,6 +126,33 @@ public class ContaConverter {
                 .telefones(entity.getTelefones())
                 .dadosPessoais(entity.getDadosPessoais())
                 .enderecos(entity.getEnderecos())
+                .build();
+    }
+
+    public DadosPessoais alterarInfoPessoais(DadosPessoaisDTO dto , DadosPessoais entity){
+        return DadosPessoais.builder()
+                .id(entity.getId())
+                .rg(dto.getRg() != null ? dto.getRg() : entity.getRg())
+                .cpf(dto.getCpf() != null ? dto.getCpf() : entity.getCpf())
+                .build();
+    }
+
+    public Endereco alterarEndereco(EnderecoDTO dto , Endereco entity){
+        return Endereco.builder()
+                .id(entity.getId())
+                .numero(dto.getNumero() != null ? dto.getNumero() : entity.getNumero())
+                .rua(dto.getRua() != null ? dto.getRua() : entity.getRua())
+                .cep(dto.getCep() != null ? dto.getCep() : entity.getCep())
+                .cidade(dto.getCidade() != null ? dto.getCidade() : entity.getCidade())
+                .estado(dto.getEstado() != null ? dto.getEstado() : entity.getEstado())
+                .build();
+    }
+
+    public Telefone alterarTelefone(TelefoneDTO dto , Telefone entity){
+        return Telefone.builder()
+                .id(entity.getId())
+                .ddd(dto.getDdd() != null ? dto.getDdd() : entity.getDdd())
+                .numero(dto.getNumero() != null ? dto.getNumero() : entity.getNumero())
                 .build();
     }
 }

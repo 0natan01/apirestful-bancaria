@@ -3,6 +3,9 @@ package com.example.apirestful_bancaria.controller;
 
 
 import com.example.apirestful_bancaria.business.dto.ContaDTO;
+import com.example.apirestful_bancaria.business.dto.DadosPessoaisDTO;
+import com.example.apirestful_bancaria.business.dto.EnderecoDTO;
+import com.example.apirestful_bancaria.business.dto.TelefoneDTO;
 import com.example.apirestful_bancaria.business.service.ContaService;
 import com.example.apirestful_bancaria.infrastructure.model.Conta;
 
@@ -45,5 +48,23 @@ public class ContaController  {
     public ResponseEntity<ContaDTO> atualizaDadosContaBancaria(@RequestBody ContaDTO dto ,
                                                                @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(contaService.alterarDadosUsuario(token , dto));
+    }
+
+    @PutMapping("/dadosPessoais")
+    public ResponseEntity<DadosPessoaisDTO> atualizaDadosPessoais(@RequestBody DadosPessoaisDTO dadosPessoaisDTO,
+                                                          @RequestParam("id") Long id){
+        return ResponseEntity.ok(contaService.alteraDadosPessoais(id , dadosPessoaisDTO));
+    }
+
+    @PutMapping("/enderecos")
+    public ResponseEntity<EnderecoDTO> atualizaEndereco(@RequestBody EnderecoDTO enderecoDTO ,
+                                                        @RequestParam("id") Long id){
+        return ResponseEntity.ok(contaService.alteraEndereco(id , enderecoDTO));
+    }
+
+    @PutMapping("/telefones")
+    public ResponseEntity<TelefoneDTO> atualizaTelefone(@RequestBody TelefoneDTO telefoneDTO ,
+                                                        @RequestParam("id") Long id){
+        return ResponseEntity.ok(contaService.alteraTelefone(id , telefoneDTO));
     }
 }
