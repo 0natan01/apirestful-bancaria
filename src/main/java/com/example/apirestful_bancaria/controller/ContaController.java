@@ -67,4 +67,16 @@ public class ContaController  {
                                                         @RequestParam("id") Long id){
         return ResponseEntity.ok(contaService.alteraTelefone(id , telefoneDTO));
     }
+
+    @PostMapping("/endereco")
+    public  ResponseEntity<EnderecoDTO> cadastraEndereco(@RequestBody EnderecoDTO enderecoDTO ,
+                                                         @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(contaService.cadastroEndereco(token , enderecoDTO));
+    }
+
+    @PostMapping("/telefone")
+    public  ResponseEntity<TelefoneDTO> cadastraTelefone(@RequestBody TelefoneDTO telefoneDTO ,
+                                                         @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(contaService.cadastroTelefone(token , telefoneDTO));
+    }
 }

@@ -80,4 +80,26 @@ public class ContaService {
 
         return contaConverter.paraTelefoneDTO(telefoneRepository.save(telefone));
    }
+
+   public EnderecoDTO cadastroEndereco(String token , EnderecoDTO enderecoDTO){
+        String email = jwtUtil.extraiEmail(token.substring(7 ));
+
+        Conta usuario = contaRespository.findByEmail(email).orElseThrow(() ->
+                new ResourceNotFoundExceptions("Email nao localizado!" + email));
+
+        Endereco endereco = contaConverter.paraEnderecoEntity(enderecoDTO , usuario.getId());
+        Endereco enderecoEntity = enderecoRepository.save(endereco);
+        return contaConverter.paraEnderecoDTO(enderecoEntity);
+   }
+
+   public TelefoneDTO cadastroTelefone(String token , TelefoneDTO telefoneDTO){
+        String email = jwtUtil.extraiEmail(token.substring(7));
+
+       Conta usuario = contaRespository.findByEmail(email).orElseThrow(() ->
+               new ResourceNotFoundExceptions("Email nao localizado!" + email));
+
+       Telefone telefone = contaConverter.paraTelefoneEntity(telefoneDTO , usuario.getId());
+       Telefone telefoneEntity = telefoneRepository.save(telefone);
+       return contaConverter.paraTelefoneDTO(telefoneEntity);
+   }
 }

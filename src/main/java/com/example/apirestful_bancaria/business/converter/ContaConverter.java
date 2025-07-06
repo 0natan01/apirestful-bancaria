@@ -35,7 +35,6 @@ public class ContaConverter {
                 .rg(dadosPessoaisDTO.getRg())
                 .cpf(dadosPessoaisDTO.getCpf())
                 .build();
-
     }
 
 
@@ -153,6 +152,25 @@ public class ContaConverter {
                 .id(entity.getId())
                 .ddd(dto.getDdd() != null ? dto.getDdd() : entity.getDdd())
                 .numero(dto.getNumero() != null ? dto.getNumero() : entity.getNumero())
+                .build();
+    }
+
+
+    public Endereco paraEnderecoEntity(EnderecoDTO dto , Long idConta){
+        return Endereco.builder()
+                .endereco_id(idConta)
+                .rua(dto.getRua())
+                .estado(dto.getEstado())
+                .cidade(dto.getCidade())
+                .cep(dto.getCep())
+                .numero(dto.getNumero())
+                .build();
+    }
+    public Telefone paraTelefoneEntity(TelefoneDTO dto , Long idConta){
+        return Telefone.builder()
+                .telefone_id(idConta)
+                .ddd(dto.getDdd())
+                .numero(dto.getNumero())
                 .build();
     }
 }
