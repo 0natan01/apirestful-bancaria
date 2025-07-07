@@ -102,4 +102,13 @@ public class ContaService {
        Telefone telefoneEntity = telefoneRepository.save(telefone);
        return contaConverter.paraTelefoneDTO(telefoneEntity);
    }
+
+   public Conta procuraUsuarioPorEmail(String email){
+        return contaRespository.findByEmail(email).orElseThrow(() -> new
+                ResourceNotFoundExceptions("Email não encontrado" + email));
+   }
+
+   public void deletaUsuarioPorEmail(String email){
+        contaRespository.deleteByEmail(email);
+   }
 }

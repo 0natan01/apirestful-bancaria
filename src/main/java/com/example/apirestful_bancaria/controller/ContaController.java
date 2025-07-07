@@ -79,4 +79,15 @@ public class ContaController  {
                                                          @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(contaService.cadastroTelefone(token , telefoneDTO));
     }
+
+    @GetMapping
+    public ResponseEntity<Conta> procuraContaPorEmail(@RequestParam("email") String email){
+        return ResponseEntity.ok(contaService.procuraUsuarioPorEmail(email)) ;
+    }
+
+    @DeleteMapping("/{email}")
+    public ResponseEntity<Void> deletaUsuarioPorEmail(@PathVariable String email){
+        contaService.deletaUsuarioPorEmail(email);
+        return ResponseEntity.ok().build();
+    }
 }
